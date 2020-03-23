@@ -10,6 +10,13 @@ public class DeckTester {
 	 *	@param args is not used.
 	 */
 	public static void main(String[] args) {
+		Deck d = makeTwentyOneGame();
+		System.out.println(d);
+
+	}
+
+	// Tests activity 2 exercises
+	public static void testDecks() {
 		String[] ranks1 = {"One", "Two", "Three"};
 		String[] suits1 = {"Spades", "Diamonds", "Clubs"};
 		int[] values1 = {1,2,3};
@@ -42,6 +49,46 @@ public class DeckTester {
 		System.out.println("Size: " + deck3.size() + "\tIsEmpty? " + deck3.isEmpty());
 		System.out.println(deck3.deal());
 		System.out.println("Size: " + deck3.size() + "\tIsEmpty? " + deck3.isEmpty() + "\n");
+	}
 
+	// Answers question 3 of activity 2
+	public static Deck makeTwentyOneGame() {
+		int fullSize = 52;
+		String[] ranks = new String[fullSize];
+		String[] suits = new String[fullSize];
+		int[] values = new int[fullSize];
+
+		for (int i = 0; i < fullSize; i++) {
+			// specifies suits
+			if (i/13 == 0) { 
+				suits[i] = "Spades"; 
+			} else if (i/13 == 1) { 
+				suits[i] = "Hearts"; 
+			} else if (i/13 == 2) { 
+				suits[i] = "Diamonds"; 
+			} else if (i/13 == 3) { 
+				suits[i] = "Clubs"; 
+			} 
+
+			// specifies ranks and values
+			values[i] = i%13 + 1;
+			if (values[i] == 1) { 
+				ranks[i] = "Ace"; 
+				values[i] = 11;
+			} else if (values[i] <= 10) {
+				ranks[i] = String.valueOf(values[i]);
+			} else {
+				if (values[i] == 11) {
+					ranks[i] = "Jack";
+				} else if (values[i] == 12) {
+					ranks[i] = "Queen";
+				} else {
+					ranks[i] = "King";
+				}
+				values[i] = 10;
+			}
+		}
+
+		return new Deck(ranks, suits, values);
 	}
 }
