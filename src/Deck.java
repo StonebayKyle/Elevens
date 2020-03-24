@@ -32,9 +32,7 @@ public class Deck {
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		cards = new ArrayList<Card>();
 		for (int j = 0; j < ranks.length; j++) {
-			for (String suitString : suits) {
-				cards.add(new Card(ranks[j], suitString, values[j]));
-			}
+				cards.add(new Card(ranks[j], suits[j], values[j]));
 		}
 		size = cards.size();
 		shuffle();
@@ -62,7 +60,14 @@ public class Deck {
 	 * and reset the size to represent the entire deck.
 	 */
 	public void shuffle() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		size = cards.size();
+		for (int k = size-1; k > 0; k--) {
+			int r = (int)(Math.random() * (k+1));
+			Card cardTemp = cards.get(k);
+
+			cards.set(k, cards.get(r));
+			cards.set(r, cardTemp);
+		}
 	}
 
 	/**
