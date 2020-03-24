@@ -15,6 +15,24 @@ public class Shuffler {
 	 * @param args is not used.
 	 */
 	public static void main(String[] args) {
+		// flip()
+		for (int i = 0; i < SHUFFLE_COUNT; i++) {
+			System.out.println(flip());
+		}
+		System.out.println();
+		
+		// arePermutations()
+		int[] array1 = { 0, 1, 2, 3, 4};
+		int[] array2 = { 1, 0, 3, 2, 4};
+		System.out.println(arePermutations(array1, array2));
+		array2[1] = 5;
+		System.out.println(arePermutations(array1, array2));
+		System.out.println();
+
+		testShuffle();
+	}
+
+	public static void testShuffle() {
 		System.out.println("Results of " + SHUFFLE_COUNT +
 								 " consecutive perfect shuffles:");
 		int[] values1 = {0, 1, 2, 3, 4, 5, 6};
@@ -30,7 +48,7 @@ public class Shuffler {
 
 		System.out.println("Results of " + SHUFFLE_COUNT +
 								 " consecutive efficient selection shuffles:");
-		int[] values2 = {0, 1, 2, 3, 4, 5, 6, 7};
+		int[] values2 = {1, 2, 3, 4};
 		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
 			selectionShuffle(values2);
 			System.out.print("  " + j + ":");
@@ -41,7 +59,6 @@ public class Shuffler {
 		}
 		System.out.println();
 	}
-
 
 	/**
 	 * Apply a "perfect shuffle" to the argument.
@@ -83,5 +100,27 @@ public class Shuffler {
 			values[k] = values[r];
 			values[r] = valueTemp;
 		}
+	}
+
+	public static String flip() {
+		if (Math.random() >= 1/3.0) {
+			return "heads";
+		} else {
+			return "tails";
+		}
+	}
+
+	public static boolean arePermutations(int[] array1, int[] array2) {
+		for (int i = 0; i < array1.length; i++) {
+			boolean found = false;
+			for (int j = 0; j < array1.length; j++) {
+				if (array1[i] == array2[j]) {
+					found = true;
+					break;
+				}
+			}
+			if (!found) { return false; }
+		}
+		return true;
 	}
 }
