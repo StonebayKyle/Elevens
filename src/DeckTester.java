@@ -64,23 +64,12 @@ public class DeckTester {
 	}
 
 	public static Deck makeCardDeck() {
-		int fullSize = 52;
+		String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
+		int fullSize = 52/suits.length;
 		String[] ranks = new String[fullSize];
-		String[] suits = new String[fullSize];
 		int[] values = new int[fullSize];
 
 		for (int i = 0; i < fullSize; i++) {
-			// specifies suits
-			if (i/13 == 0) { 
-				suits[i] = "Spades"; 
-			} else if (i/13 == 1) { 
-				suits[i] = "Hearts"; 
-			} else if (i/13 == 2) { 
-				suits[i] = "Diamonds"; 
-			} else if (i/13 == 3) { 
-				suits[i] = "Clubs"; 
-			} 
-
 			// specifies ranks and values
 			values[i] = i%13 + 1;
 			if (values[i] == 1) { 
