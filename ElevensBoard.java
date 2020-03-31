@@ -232,4 +232,12 @@ public class ElevensBoard {
 	private boolean containsJQK(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
 	}
+
+	public static printCards(ElevensBoard board) {
+		List<Integer> cIndexes = board.cardIndexes();
+
+		for (Integer index : cIndexes) {
+			System.out.println(board.cardAt(index));
+		}
+	}
 }
